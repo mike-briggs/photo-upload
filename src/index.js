@@ -1,5 +1,5 @@
 const express = require("express");
-const PORT = process.env.PORT || 4000;
+
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cors = require("cors");
@@ -25,6 +25,6 @@ app.get("/",(reg,res)=>{
 app.use("/user", userRoutes);
 //app.use("/upload", uploadRoutes);
 
-app.listen(PORT, () => {
+app.listen(() => {
     console.log(`App is travelling on Port ${PORT}`)
 })
