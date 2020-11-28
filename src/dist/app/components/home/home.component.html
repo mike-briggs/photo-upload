@@ -1,0 +1,78 @@
+<nav class="navbar">
+  <a href="/" class="logo-container">
+    <img class="logo" src="../../../assets/img/10k-logomark.svg" alt="photo share">
+  </a>
+  <ul class="nav-links">
+    <button (click)="logout()" class="primary-button">Logout</button>
+    <button (click)="createVideo()" class="primary-button">Create Video</button>
+
+  </ul>
+</nav>
+
+
+
+
+<section >
+  <div class="testClass" >
+    <div class=" contain-1100" >
+        <div class="breathe left">
+          <div style="margin-bottom: 20px;">
+            <h1 class="title">Welcome to 10k Photos {{userdata.name.split(" ")[0]}}!</h1>
+  
+            <p class="paragraph">The most engaged employees were found to have these 10 skills. Start tracking your small steps towards finding your passion.</p>
+          </div>
+          <app-drag-drop style="width:100% !important;"></app-drag-drop>
+  
+        
+      </div>
+      <div style="flex:1;">
+        <mat-form-field appearance="outline">
+          <mat-label>Sort by skill...</mat-label>
+          <mat-select [(value)]="currentImageFilter">
+            <mat-option >All</mat-option>
+            <mat-option value="Focus">Focus</mat-option>
+            <mat-option value="Leadership">Leadership</mat-option>
+            <mat-option value="Adapt">Adapt</mat-option>
+            <mat-option value="Support">Support</mat-option>
+            <mat-option value="Mindfullness">Mindfullness</mat-option>
+            <mat-option value="Discipline">Discipline</mat-option>
+            <mat-option value="Communication">Communication</mat-option>
+            <mat-option value="Techincal">Techincal</mat-option>
+            <mat-option value="Learning">Learning</mat-option>
+            
+          </mat-select>
+        </mat-form-field>
+        <div style="max-height:70vh;overflow:scroll;">
+          <div *ngIf="filterImageData().length == 0">
+            <p>No Images :( </p>
+          </div>
+          <div style="display:flex;flex-direction: row; flex-wrap: wrap;" >
+            <div *ngFor="let img of filterImageData()">
+              <div class="imageContainer" style="position:relative;padding-right:5px;">
+                
+                
+                <img class="sq-200"  [src]="img.url">
+                <div class="text" style="position: absolute;
+                top: 5%;
+                left: 5%;
+                ">
+<button (click)="deletePost(img._id)" class="delete-button">✕</button>
+<p  >{{img.desc}}</p>
+<p  >{{img.createdAt.substring(0,10)}}</p>
+                </div>
+              </div>
+    
+            
+        
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      
+    </div>
+  </div>
+ 
+
+</section>

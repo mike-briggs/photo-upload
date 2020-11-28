@@ -12,6 +12,7 @@ require("./config/db")(app);
 app.use(cors());
 app.options('*',cors())
 app.use('/public', express.static('public'));
+app.use(express.static('./dist/<photo-client.json>'));
 app.use(bodyParser.urlencoded({
     extended:false
 }));
@@ -19,12 +20,11 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use(morgan("dev"));
 
-app.get("/",(reg,res)=>{
-    console.log("First Route");
-})
+app.get('/', function(req, res) {
+    res.sendFile('index.html', {root: 'dist/<photo-client.json>/'}
+  );
+  });
 app.use("/user", userRoutes);
 //app.use("/upload", uploadRoutes);
 
-app.listen(() => {
-    console.log(`App is travelling on Port ${PORT}`)
-})
+app.listen(8080)

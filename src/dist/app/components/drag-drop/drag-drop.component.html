@@ -1,0 +1,76 @@
+<div class="w-100 fileUploadWrapper">
+    <form [formGroup]="form" (submit)="upload()">
+        
+            <!-- Progress Bar -->
+            
+
+            
+
+            <div *ngIf="fileArr.length ===0 && !progress" class="box" appDragDropFileUpload  (fileDropped)="setFiles($event)">
+                
+                <div class="box-content" (click)="fileField.click()">
+                    <div   >
+                        <img class="icon-med"  src="../../../assets/img/upload.svg">
+
+                        <h3 style="margin-top: 10px;" class="subtitle">Please drag and drop photos here.</h3>
+                        <p class="paragraph">File format should be .jpg | .png | .jpeg </p>
+
+                    </div>
+                    
+    
+                </div>
+                <div *ngIf="fileArr.length ===0" >
+                    <button (click)="fileField.click()" style="margin-top:20px;" class="primary-button">Choose From Files</button>
+                </div>
+                <div *ngIf="fileArr.length > 0" >
+                </div>
+
+          
+                
+              </div>
+              
+              <div *ngIf="progress">
+                <div class="progress-contain form-group">
+                    <div class="progress progress-bar progress-bar-striped bg-success" role="progressbar"
+                        [style.width.%]="progress">
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-100" >
+                <div  appDragDropFileUpload (fileDropped)="setFiles($event)" class="image-list"  *ngFor="let file of fileArr; let i = index">
+                    <div style="display:flex;flex:1;">
+                        <img class="profile" [src]="sanitize(file['url'])" alt="">
+                    </div>
+                    <div style="display:flex;flex:3;flex-direction: row;">
+                        <h3 style="flex:3">{{file.item.name}}</h3>
+                        <a style="flex:1" (click)="fileField.click()" class="naked-button">Change File</a>
+
+                    </div>
+                </div>
+                <div style="margin-top:20px;">
+                    <mat-form-field appearance="outline" style="width:100%">
+                        <mat-label>Description</mat-label>
+                        <input name="desc" formControlName="desc" matInput>
+                    </mat-form-field>
+                    <app-tags required ></app-tags>
+                </div>
+
+                <div *ngIf="fileArr.length !=0 && !progress" style="display:flex;padding-top:10px;">
+                    
+                    
+                    
+                        <button (click)="clearFiles()"  class="cancel-button">Cancel</button>
+                        <button type="submit" class="primary-button">Upload Photo</button>
+                        
+                    
+                </div>
+
+                
+                <p class="message">{{msg}}</p>
+            </div>
+            
+            <input type="file" name="avatars" #fileField (change)="setFiles($event.target.files)" hidden>
+
+    </form>
+</div>
