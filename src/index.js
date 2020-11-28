@@ -21,10 +21,10 @@ app.use(bodyParser.json())
 app.use(morgan("dev"));
 
 app.get('/', function(req, res) {
-    res.sendFile('index.html', {root: 'dist/photo-client/'}
+    res.sendFile('index.html', {root: './dist/photo-client/'}
   );
   });
 app.use("/user", userRoutes);
 //app.use("/upload", uploadRoutes);
 
-app.listen(8080)
+app.listen()
