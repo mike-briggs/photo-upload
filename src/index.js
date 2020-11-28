@@ -10,6 +10,7 @@ const app = express();
 
 require("./config/db")(app);
 app.use(cors());
+app.options('*',cors())
 app.use('/public', express.static('public'));
 app.use(bodyParser.urlencoded({
     extended:false
